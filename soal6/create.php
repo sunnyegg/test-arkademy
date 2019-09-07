@@ -1,9 +1,12 @@
-<?php include('config.php'); ?>
+<?php
+include('config.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Test Soal 6</title>
     <link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	
 </head>
@@ -33,15 +36,15 @@
 			$cek = mysqli_query($koneksi, "SELECT nama,name,salary FROM name,work,salary WHERE nama='$nama',name='$name',salary='$salary'") or die(mysqli_error($koneksi));
 			
 			if(mysqli_num_rows($cek) == 0){
-				$sql = mysqli_query($koneksi, "INSERT INTO name(nama) VALUES('$nama')" or "INSERT INTO name(work) VALUES('$name')" or "INSERT INTO salary(kategori) VALUES('$salary')") or die(mysqli_error($koneksi));
+				$sql = mysqli_query($koneksi, "INSERT INTO name(nama) VALUES('$nama'); INSERT INTO work(name) VALUES('$name'); INSERT INTO kategori(salary); VALUES('$salary')") or die(mysqli_error($koneksi));
 				
 				if($sql){
-					echo '<script>alert("Berhasil menambahkan data."); document.location="tambah.php";</script>';
+					echo '<script>alert("Berhasil menambahkan data."); document.location="create.php";</script>';
 				}else{
 					echo '<div class="alert alert-warning">Gagal melakukan proses tambah data.</div>';
 				}
 			}else{
-				echo '<div class="alert alert-warning">Gagal, NIM sudah terdaftar.</div>';
+				echo '<div class="alert alert-warning">Gagal, data sudah terdaftar.</div>';
 			}
 		}
 		?>
